@@ -1,20 +1,17 @@
+from random import randrange
 class Comando():
-    def __init__(self, nome_comando:str, resposta_comando:str):
-        self.__nome_comando = nome_comando
-        self.__resposta_comando = resposta_comando
+    def __init__(self, id:int, msg:str, respostas:list):
+        self.__id = id
+        self.__mensagem = msg
+        self.__respostas = respostas
 
     @property
-    def nome_comando(self):
-        return self.__nome_comando
+    def id(self)->str:
+        return f'{self.__id}'
 
     @property
-    def resposta_comando(self):
-        return self.__resposta_comando
+    def mensagem(self)->str:
+        return self.__mensagem
 
-    @nome_comando.setter
-    def nome_comando(self, nome_comando):
-        self.__nome_comando = nome_comando
-
-    @resposta_comando.setter
-    def resposta_comando(self, resposta_comando):
-        self.__resposta_comando = resposta_comando
+    def get_resposta_random(self)->str:
+        return self.__respostas[randrange[len(self.__respostas)]]
