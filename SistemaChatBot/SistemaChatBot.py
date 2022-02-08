@@ -23,39 +23,55 @@ class SistemaChatBot:
     
     def escolhe_bot(self):
         while True:
-            escolha = input('Digite o numero do bot desejado: ')
-            try: escolha = int(escolha)
-            except: escolha=-1
-            if escolha > 0 and escolha <= len(self.lista_bots):
+            escolha = input('Digite o numero do bot desejado, ou -1 para sair: ')
+            try: 
+                escolha = int(escolha)
+            except: 
+                print('A escolha precisa ser um número inteiro.')
+                continue
+
+            if escolha-1 >= 0 and escolha-1 < len(self.lista_bots):
                 self.bot = self.lista_bots[escolha-1]
-                break
-            else: print('Escolha inválida')
+                return True
+            elif escolha == -1:
+                return False
+            else:
+                print('Insira um índice de um bot que exista')
 
     def mostra_comandos_bot(self):
-        print(self.bot.mostra_comandos())
-        print()
+        for cm in self.__bot.comandos:
+            print(f'{cm.id} - {cm.mensagem}')
 
     def le_envia_comando(self):
         while True:
             escolha = input('Digite o numero do comando desejado (ou -1 para sair): ')
-            try: escolha = int(escolha)
-            except: escolha=-2
-            if escolha > 0 and escolha <= len(self.bot.comandos):
-                print(self.bot.executa_comando(escolha-1))
+            try: 
+                escolha = int(escolha)
+            except: 
+                print('A escolha precisa ser um número inteiro.')
+                continue
+
+            if escolha == -1:
                 return False
-            elif escolha == -1:
-                return True
-            else: print('Escolha inválida')
+            else:
+                for cm in self.__bot.comandos:
+                    if escolha == cm.id:
+                        print(self.__bot.executa_comando(escolha))
+                        return True
+                print('Insira um índice de um bot que exista')
 
     def inicio(self):
         self.boas_vindas() #mostra a tela de boas vindas
-        self.mostra_menu() #mostra o menu com os bots disponiveis
-        self.escolhe_bot() #o usuario escolhe um bot da lista de bots
-        print(self.bot.boas_vindas()) #imprime a mensagem de boas vindas do bot
-        while True: #entra no loop de mostrar comandos do bot e escolher comando do bot até o usuário definir a saída
-            self.mostra_comandos_bot()
-            if self.le_envia_comando(): break
-        print(self.bot.despedida()) #ao sair mostra a mensagem de despedida do bot
+        while True:
+            self.mostra_menu() #mostra o menu com os bots disponiveis
+            if not self.escolhe_bot(): #o usuario escolhe um bot da lista de bots
+                break
+            print(self.__bot.boas_vindas()) #imprime a mensagem de boas vindas do bot
+            while True: #entra no loop de mostrar comandos do bot e escolher comando do bot até o usuário definir a saída
+                self.mostra_comandos_bot()
+                if not self.le_envia_comando():
+                    print(self.bot.despedida()) #ao sair mostra a mensagem de despedida do bot
+                    break
     
     @property
     def empresa(self): return(self.__empresa)
