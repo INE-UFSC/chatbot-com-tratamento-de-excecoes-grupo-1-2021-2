@@ -17,7 +17,7 @@ class BotMusical(Bot):
         ]
 
     @property
-    def comandos(self, id):
+    def comandos(self):
         return self.__comandos
 
     @property
@@ -27,6 +27,12 @@ class BotMusical(Bot):
     @nome.setter
     def nome(self, nome):
         self.__nome = nome
+
+    def boas_vindas(self):
+        return(self.__comandos[0].get_resposta_random())
+        
+    def despedida(self):
+        return(self.__comandos[-1].get_resposta_random())
 
     def apresentacao(self):
         return f'Deixa eu me apresentar, que eu acabei de chegar! Meu nome é {self.__nome}!'

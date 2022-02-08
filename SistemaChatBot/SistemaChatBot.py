@@ -18,7 +18,7 @@ class SistemaChatBot:
     def mostra_menu(self):
         print('Bots disponíveis:')
         for i,bot in enumerate(self.lista_bots):
-            print(f'{i+1} - Bot: {bot.nome} - Apresentação: {bot.apresentacao}')
+            print(f'{i+1} - {bot.nome} - Apresentação: {bot.apresentacao()}')
 
     
     def escolhe_bot(self):

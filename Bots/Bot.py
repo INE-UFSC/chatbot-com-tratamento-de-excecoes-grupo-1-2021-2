@@ -1,6 +1,6 @@
 # implemente as seguintes classes
 
-from ..SistemaChatBot.Comando import Comando
+from .Comando import Comando
 from abc import ABC, abstractmethod
 import random as r
 

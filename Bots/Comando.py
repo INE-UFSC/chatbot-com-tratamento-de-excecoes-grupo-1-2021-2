@@ -14,4 +14,4 @@ class Comando():
         return self.__mensagem
 
     def get_resposta_random(self)->str:
-        return self.__respostas[randrange[len(self.__respostas)]]
+        return self.__respostas[randrange(len(self.__respostas))]
