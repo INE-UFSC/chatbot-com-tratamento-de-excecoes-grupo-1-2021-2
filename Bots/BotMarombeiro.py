@@ -1,5 +1,6 @@
 from Bots.Bot import Bot
 
+
 class BotMarombeiro(Bot):
     def __init__(self, nome: str):
         self.__nome = nome
@@ -19,11 +20,8 @@ class BotMarombeiro(Bot):
 
     def apresentacao(self):
         return "Treino e dieta eu não furo, tá ligado?"
- 
-    def mostra_comandos(self):
-        return self.__comandos
-    
-    def executa_comando(self,cmd):
+
+    def executa_comando(self, cmd):
         try:
             return self.__comandos[cmd]
         except:

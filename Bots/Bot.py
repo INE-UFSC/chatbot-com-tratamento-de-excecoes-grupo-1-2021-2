@@ -11,16 +11,17 @@ class Bot(ABC):
         self.__nome = nome
         self.__comandos = []
 
-    # nao esquecer o decorator
+    @property
     def nome(self):
         pass
 
-    # nao esquecer o decorator
+    @nome.setter
     def nome(nome):
         pass
 
-    def mostra_comandos(self):
-        pass
+    @property
+    def comandos(self):
+        return self.__comandos
 
     def cria_comando(self, id, msg, respostas):
         return Comando(id, msg, respostas)

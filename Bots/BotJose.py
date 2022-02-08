@@ -25,7 +25,7 @@ class BotJose(Bot):
         return self.__comandos
 
     def apresentacao(self):
-        print("Mensagem de apresentação: Olá, eu sou o José, seu bot conselheiro")
+        return "Mensagem de apresentação: Olá, eu sou o José, seu bot conselheiro"
  
     def mostra_comandos(self):
         print("1 - conselho para os estudos")
